@@ -14,11 +14,15 @@
     <p>Your fav meat is: {{favMeat}}</p>
     <div class="content">
       <div ng-controller="NinjaController">
+        <button ng-click="order = 'name'">Order by Name</button>
+        <button ng-click="order = 'belt'">Order by Belt</button>
         <p>{{message}}</p>
         <input type="text" ng-model="search" placeholder="Search Ninja" />
         <ul>
-          <li ng-repeat="ninja in ninjas | orderBy: 'name' | filter: search" ng-show="ninja.available">
-            {{ninja.name}}-{{ninja.belt}} - {{ninja.rate | currency: 'LKR'}}
+          <li ng-repeat="ninja in ninjas | orderBy: order | filter: search" ng-show="ninja.available">
+            <h3>{{ninja.name}} - {{ninja.rate | currency: 'LKR'}}</h3>
+            <div class="remove" ng-click="removeNinja(ninja)">X</div>
+            <span class="belt" style="background: {{ninja.belt}}">{{ninja.belt}} Belt</span>
           </li>
         </ul>
       </div>
