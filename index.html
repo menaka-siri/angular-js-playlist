@@ -8,18 +8,20 @@
   </head>
   <body>
     <header ng-include="'header.html'"></header>
+
     <h1>My First Web Site</h1>
     <input type="text" ng-model="favMeat" placeholder="Enter ur fav meat" />
     <p>Your fav meat is: {{favMeat}}</p>
-
-    <div ng-controller="NinjaController">
-      <p>{{message}}</p>
-      <input type="text" ng-model="search" placeholder="Search Ninja" />
-      <ul>
-        <li ng-repeat="ninja in ninjas | orderBy: 'name' | filter: search">
-          {{ninja.name}}-{{ninja.belt}} - {{ninja.rate | currency: 'LKR'}}
-        </li>
-      </ul>
+    <div class="content">
+      <div ng-controller="NinjaController">
+        <p>{{message}}</p>
+        <input type="text" ng-model="search" placeholder="Search Ninja" />
+        <ul>
+          <li ng-repeat="ninja in ninjas | orderBy: 'name' | filter: search" ng-show="ninja.available">
+            {{ninja.name}}-{{ninja.belt}} - {{ninja.rate | currency: 'LKR'}}
+          </li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>
