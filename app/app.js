@@ -12,6 +12,21 @@ myNinjaApp.run(function(){
 myNinjaApp.controller('NinjaController', ['$scope',function($scope){
     $scope.message = "hey y'all";
 
+    $scope.addNinja = function(){
+        $scope.ninjas.push({
+            name: $scope.newNinja.name,
+            belt: $scope.newNinja.belt,
+            rate: parseInt($scope.newNinja.rate),
+            available: true
+        });
+
+        $scope.newNinja.name = "";
+        $scope.newNinja.belt = "";
+        $scope.newNinja.rate = "";
+
+
+    };
+
     $scope.removeNinja = function(ninja){
         var removedNinja = $scope.ninjas.indexOf(ninja);
         $scope.ninjas.splice(removedNinja,1);
