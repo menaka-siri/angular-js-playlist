@@ -9,7 +9,11 @@ myNinjaApp.config(['$routeProvider', function($routeProvider){
         .when('/directory',{
             templateUrl: 'views/directory.html',
             controller: 'NinjaController'
-        }).otherwise({
+        })
+        .when('/contact',{
+            templateUrl: 'views/contact.html'
+        })
+        .otherwise({
             redirectTo: '/home'
         });
 }])
