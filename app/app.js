@@ -18,7 +18,7 @@ myNinjaApp.run(function(){
 
 });
 
-myNinjaApp.controller('NinjaController', ['$scope',function($scope){
+myNinjaApp.controller('NinjaController', ['$scope','$http',function($scope, $http){
     $scope.message = "hey y'all";
 
     $scope.addNinja = function(){
@@ -28,12 +28,9 @@ myNinjaApp.controller('NinjaController', ['$scope',function($scope){
             rate: parseInt($scope.newNinja.rate),
             available: true
         });
-
         $scope.newNinja.name = "";
         $scope.newNinja.belt = "";
         $scope.newNinja.rate = "";
-
-
     };
 
     $scope.removeNinja = function(ninja){
@@ -41,34 +38,10 @@ myNinjaApp.controller('NinjaController', ['$scope',function($scope){
         $scope.ninjas.splice(removedNinja,1);
     };
 
-    $scope.ninjas = [
-        {
-            name: "yoshi",
-            belt: "green",
-            rate: 50,
-            available : true,
-            thumb: "content/img/yoshi.jpg"
-        },
-        {
-            name: "Crystal",
-            belt: "red",
-            rate: 30,
-            available : true,
-            thumb: "content/img/crystal.jpg"
-        },
-        {
-            name: "Ryu",
-            belt: "black",
-            rate: 20,
-            available : false,
-            thumb: "content/img/ryu.png"
-        },
-        {
-            name: "Shaun",
-            belt: "brown",
-            rate: 45,
-            available : true,
-            thumb: "content/img/shaun.png"
-        }
-    ];
+    $http.get('data/ninjas.json').then(function(response){
+       $scope.ninjas = response.data; 
+    },function (error){
+     
+    });
+
 }]);
